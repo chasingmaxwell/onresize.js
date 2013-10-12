@@ -3,7 +3,7 @@
  * The MIT License (MIT).
  */
 
-function ResizeBehaviors() {
+function OnResize() {
 
   'use strict';
 
@@ -26,11 +26,11 @@ function ResizeBehaviors() {
     this.width = width;
   };
 
-  this.attachBehavior = function(behavior) {
-    this.behaviors.push(behavior);
+  this.add = function(b) {
+    this.behaviors.push(b);
   };
 
-  this.attachBehaviors = function() {
+  this.run = function() {
     this.getWidth();
     for (var i = 0, len = this.behaviors.length; i < len; i++) {
       if (typeof this.behaviors[i] == 'function') {
@@ -44,7 +44,7 @@ function ResizeBehaviors() {
     if (typeof t !== 'undefined') {
       clearTimeout(t);
     }
-    t = setTimeout(function() { s.attachBehaviors(); }, s.delay);
+    t = setTimeout(function() { s.run(); }, s.delay);
   };
 
 }
